@@ -1,0 +1,40 @@
+version: "3.5"
+services:
+  neo4j:
+    container_name: moviedb
+    image: neo4j:5.8.0
+    environment:
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      - NEO4J_AUTH=none
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - ./db/data:/data
+      - ./db/logs:/logs
+    restart: always
+    networks:
+      - movie
+  movie:
+    container_name: movie
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: movie:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=r2dbc:postgresql://db:5432/accounts
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - neo4j
+    networks:
+      - movie
+volumes:
+  neo4j:
+    driver: local
+networks:
+  movie:
