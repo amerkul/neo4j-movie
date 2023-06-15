@@ -9,9 +9,11 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.INCOMING;
+import static org.springframework.data.neo4j.core.schema.Relationship.Direction.OUTGOING;
 
 @Node
 @Data
@@ -33,6 +35,8 @@ public class Movie {
     private Set<Person> writers = new HashSet<>();
     @Relationship(type = "PRODUCED", direction = INCOMING)
     private Set<Person> producers = new HashSet<>();
+    @Relationship(type = "REVIEWED", direction = INCOMING)
+    private List<Person> reviewers;
 
 
 }
