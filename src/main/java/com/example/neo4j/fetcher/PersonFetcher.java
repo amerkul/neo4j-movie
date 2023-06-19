@@ -15,7 +15,7 @@ public class PersonFetcher {
 
     @DgsQuery
     public Flux<Person> people() {
-        return service.retrieveAll();
+        return this.service.retrieveAll();
     }
 
 }

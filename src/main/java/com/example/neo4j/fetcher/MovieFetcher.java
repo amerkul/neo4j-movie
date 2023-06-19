@@ -15,7 +15,7 @@ public class MovieFetcher {
 
     @DgsQuery
     public Flux<Movie> movies() {
-        return service.retrieveAll();
+        return this.service.retrieveAll();
     }
 
 }

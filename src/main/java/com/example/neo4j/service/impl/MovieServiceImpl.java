@@ -18,19 +18,19 @@ public class MovieServiceImpl implements MovieService {
     @Override
     @Transactional
     public Mono<Movie> createOrUpdate(Movie movie) {
-        return repository.save(movie);
+        return this.repository.save(movie);
     }
 
     @Override
     @Transactional
     public Mono<Void> delete(long id) {
-        return repository.deleteById(id);
+        return this.repository.deleteById(id);
     }
 
     @Override
     @Transactional
     public Flux<Movie> retrieveAll() {
-        return repository.findAll();
+        return this.repository.findAll();
     }
 
 }

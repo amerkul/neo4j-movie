@@ -20,19 +20,19 @@ public class MovieMutation {
 
     @DgsMutation
     public Mono<String> deleteMovie(@InputArgument long id) {
-        return service.delete(id).thenReturn("Movie was deleted by id = " + id);
+        return this.service.delete(id).thenReturn("Movie was deleted by id = " + id);
     }
 
     @DgsMutation
     public Mono<Movie> newMovie(@InputArgument MovieInput input) {
         Movie movie = mapper.map(input, Movie.class);
-        return service.createOrUpdate(movie);
+        return this.service.createOrUpdate(movie);
     }
 
     @DgsMutation
     public Mono<Movie> updateMovie(@InputArgument MovieUpdate update) {
         Movie movie = mapper.map(update, Movie.class);
-        return service.createOrUpdate(movie);
+        return this.service.createOrUpdate(movie);
     }
 
 }

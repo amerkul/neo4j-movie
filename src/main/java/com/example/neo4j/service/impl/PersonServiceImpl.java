@@ -24,13 +24,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public Mono<Void> delete(long id) {
-        return repository.deleteById(id);
+        return this.repository.deleteById(id);
     }
 
     @Override
     @Transactional
     public Flux<Person> retrieveAll() {
-        return repository.findAll();
+        return this.repository.findAll();
     }
 
 }

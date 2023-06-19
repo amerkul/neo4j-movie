@@ -21,21 +21,19 @@ public class PersonMutation {
 
     @DgsData(parentType = "Mutation", field = "deletePerson")
     public Mono<String> delete(long id) {
-        return service.delete(id).thenReturn("Person was deleted by id = " + id);
+        return this.service.delete(id).thenReturn("Person was deleted by id = " + id);
     }
 
     @DgsMutation
     public Mono<Person> newPerson(@InputArgument PersonInput input) {
         Person person = mapper.map(input, Person.class);
-        return service.createOrUpdate(person);
+        return this.service.createOrUpdate(person);
     }
 
     @DgsMutation
     public Mono<Person> updatePerson(@InputArgument PersonUpdate update) {
         Person person = mapper.map(update, Person.class);
-        return service.createOrUpdate(person);
+        return this.service.createOrUpdate(person);
     }
-
-
 
 }
