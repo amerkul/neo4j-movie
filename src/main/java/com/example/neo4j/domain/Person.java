@@ -37,4 +37,10 @@ public class Person {
     @Relationship(type = "FOLLOWS")
     private List<Person> followings = new ArrayList<>();
 
+    public Person(Long id, Integer born, String name) {
+        this.id = id;
+        this.born = born;
+        this.name = name;
+    }
+
 }

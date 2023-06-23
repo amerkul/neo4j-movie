@@ -23,4 +23,11 @@ public class MovieUpdate {
     private List<PersonUpdate> producers;
     private List<ReviewUpdate> reviews;
 
+    public MovieUpdate(Long id, String tagline, String title, Integer released) {
+        this.id = id;
+        this.tagline = tagline;
+        this.title = title;
+        this.released = released;
+    }
+
 }
