@@ -1,28 +1,46 @@
 type Movie {
-    id: Int!
-    tagline: String!
-    title: String!
-    released: Int!
+    id: Long
+    tagline: String
+    title: String
+    released: Int
+    roles: [Role]
+    reviews: [Person]
+    directors: [Person]
+    writers: [Person]
+    producers: [Person]
+}
+
+type Role {
+    id: Long!
+    roles: [String!]!
+    targetMovie: Person
 }
 
 type Person {
-    id: Int!
-    born: Int!
-    name: String!
+    id: Long
+    born: Int
+    name: String
+    follows: [Person]
 }
 
 type Query {
     movies: [Movie]
     people: [Person]
+    movieByTitle(title: String!): Movie
+    movieByReleasedBetween(from: Int!, to: Int!): [Movie!]
+    personByName(name: String!): Person
+    countMovies: Int!
 }
 
 type Mutation {
-    newMovie(movie: MovieInput!): Movie
-    newPerson(person: PersonInput!): Person
+    newMovie(input: MovieInput!): Movie
+    newPerson(input: PersonInput!): Person
     updateMovie(update: MovieUpdate!): Movie
     updatePerson(update: PersonUpdate!): Person
     deletePerson(id: Int!): String
     deleteMovie(id: Int!): String
+    moviesByPersonActedIn(name: String!): [Movie!]
+    createFollowing(update: PersonUpdate!, followingName: String!): Person
 }
 
 input MovieInput {
@@ -32,10 +50,15 @@ input MovieInput {
 }
 
 input MovieUpdate {
-    id: Int!
-    tagline: String!
-    title: String!
-    released: Int!
+    id: Long
+    tagline: String
+    title: String
+    released: Int
+    roles: [RoleUpdate]
+    reviews: [PersonUpdate]
+    directors: [PersonUpdate]
+    writers: [PersonUpdate]
+    producers: [PersonUpdate]
 }
 
 input PersonInput {
@@ -44,7 +67,14 @@ input PersonInput {
 }
 
 input PersonUpdate {
-    id: Int!
-    born: Int!
-    name: String!
+    id: Long!
+    born: Int
+    name: String
 }
+
+input RoleUpdate {
+    roles: [String!]!
+    targetPerson: PersonUpdate
+}
+
+scalar Long

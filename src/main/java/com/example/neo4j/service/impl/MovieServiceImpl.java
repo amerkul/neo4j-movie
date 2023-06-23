@@ -33,4 +33,28 @@ public class MovieServiceImpl implements MovieService {
         return this.repository.findAll();
     }
 
+    @Override
+    @Transactional
+    public Mono<Movie> retrieveByTitle(String title) {
+        return this.repository.findByTitle(title);
+    }
+
+    @Override
+    @Transactional
+    public Flux<Movie> retrieveByReleasedBetween(int from, int to) {
+        return this.repository.findByReleasedBetween(from, to);
+    }
+
+    @Override
+    @Transactional
+    public Mono<Long> countMovies() {
+        return this.repository.count();
+    }
+
+    @Override
+    @Transactional
+    public Flux<Movie> retrieveByActedIn(String name) {
+        return this.repository.findByPersonActedIn(name);
+    }
+
 }

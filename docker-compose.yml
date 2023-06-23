@@ -26,9 +26,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=r2dbc:postgresql://db:5432/accounts
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - DB_URL=neo4j
+      - DB_PORT=7687
+      - SPRING_DATASOURCE_USERNAME=neo4j
+      - SPRING_DATASOURCE_PASSWORD=neo4j
     depends_on:
       - neo4j
     networks:

@@ -9,5 +9,9 @@ public interface MovieService {
     Mono<Movie> createOrUpdate(Movie movie);
     Mono<Void> delete(long id);
     Flux<Movie> retrieveAll();
+    Mono<Movie> retrieveByTitle(String title);
+    Flux<Movie> retrieveByReleasedBetween(int from, int to);
+    Mono<Long> countMovies();
+    Flux<Movie> retrieveByActedIn(String actedIn);
 
 }

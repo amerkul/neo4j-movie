@@ -1,14 +1,13 @@
 package com.example.neo4j.mutation;
 
 import com.example.neo4j.domain.Movie;
+import com.example.neo4j.mapper.MovieMapper;
 import com.example.neo4j.mutation.input.MovieInput;
 import com.example.neo4j.mutation.update.MovieUpdate;
 import com.example.neo4j.service.MovieService;
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsMutation;
-import com.netflix.graphql.dgs.InputArgument;
+import com.netflix.graphql.dgs.DgsData;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import reactor.core.publisher.Mono;
 
 @DgsComponent
@@ -16,22 +15,22 @@ import reactor.core.publisher.Mono;
 public class MovieMutation {
 
     private final MovieService service;
-    private final ModelMapper mapper;
+    private final MovieMapper mapper;
 
-    @DgsMutation
-    public Mono<String> deleteMovie(@InputArgument long id) {
+    @DgsData(parentType = "Mutation", field = "deleteMovie")
+    public Mono<String> deleteMovie(long id) {
         return this.service.delete(id).thenReturn("Movie was deleted by id = " + id);
     }
 
-    @DgsMutation
-    public Mono<Movie> newMovie(@InputArgument MovieInput input) {
-        Movie movie = mapper.map(input, Movie.class);
+    @DgsData(parentType = "Mutation", field = "newMovie")
+    public Mono<Movie> newMovie(MovieInput input) {
+        Movie movie = mapper.toEntity(input);
         return this.service.createOrUpdate(movie);
     }
 
-    @DgsMutation
-    public Mono<Movie> updateMovie(@InputArgument MovieUpdate update) {
-        Movie movie = mapper.map(update, Movie.class);
+    @DgsData(parentType = "Mutation", field = "updateMovie")
+    public Mono<Movie> updateMovie(MovieUpdate update) {
+        Movie movie = mapper.toEntity(update);
         return this.service.createOrUpdate(movie);
     }
 

@@ -1,8 +1,12 @@
 package com.example.neo4j.mutation.update;
 
+import com.example.neo4j.domain.Person;
+import com.example.neo4j.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -13,5 +17,10 @@ public class MovieUpdate {
     private String tagline;
     private String title;
     private Integer released;
+    private List<RoleUpdate> roles;
+    private List<PersonUpdate> directors;
+    private List<PersonUpdate> writers;
+    private List<PersonUpdate> producers;
+    private List<ReviewUpdate> reviews;
 
 }
