@@ -12,7 +12,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static com.example.neo4j.data.MovieData.getMovies;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -70,6 +69,13 @@ class MovieFetcherTest {
         StepVerifier.create(movies)
                 .expectNextCount(2)
                 .verifyComplete();
+    }
+
+    private Flux<Movie> getMovies() {
+        return Flux.just(
+                new Movie(1L, "Tagline_1", "Title_1", 2000),
+                new Movie(2L, "Tagline_2", "Title_2", 2001)
+        );
     }
 
 }

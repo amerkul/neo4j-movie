@@ -11,7 +11,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static com.example.neo4j.data.PersonData.getPeople;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,6 +40,11 @@ class PersonFetcherTest {
                 .verifyComplete();
     }
 
-
+    private Flux<Person> getPeople() {
+        return Flux.just(
+                new Person(1L, 2002, "Anna Merkul"),
+                new Person(2L, 1993, "Julia Merkul")
+        );
+    }
 
 }
