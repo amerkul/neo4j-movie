@@ -43,13 +43,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Flux<Person> retrieveAll() {
         return this.repository.findAll();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Mono<Person> retrieveByName(String name) {
         return this.repository.findByName(name);
     }

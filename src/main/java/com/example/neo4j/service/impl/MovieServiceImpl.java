@@ -28,31 +28,31 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Flux<Movie> retrieveAll() {
         return this.repository.findAll();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Mono<Movie> retrieveByTitle(String title) {
         return this.repository.findByTitle(title);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Flux<Movie> retrieveByReleasedBetween(int from, int to) {
         return this.repository.findByReleasedBetween(from, to);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Mono<Long> countMovies() {
         return this.repository.count();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Flux<Movie> retrieveByActedIn(String name) {
         return this.repository.findByPersonActedIn(name);
     }
