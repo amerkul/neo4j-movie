@@ -17,6 +17,7 @@
 		<java.version>17</java.version>
 		<graphql-dgs.version>7.1.0</graphql-dgs.version>
 		<neo4j-ogm-bolt-driver.version>4.0.5</neo4j-ogm-bolt-driver.version>
+		<testcontainers.version>1.18.1</testcontainers.version>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 		<org.projectlombok.version>1.18.20</org.projectlombok.version>
 		<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
@@ -66,6 +67,18 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>neo4j</artifactId>
+			<version>${testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -89,6 +102,7 @@
 						<configuration>
 							<includes>com.example.neo4j.fetcher.*</includes>
 							<includes>com.example.neo4j.mutation.*</includes>
+							<includes>com.example.neo4j.service.*</includes>
 							<rules>
 								<rule>
 									<element>PACKAGE</element>

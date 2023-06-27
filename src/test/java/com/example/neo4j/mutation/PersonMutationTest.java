@@ -42,7 +42,7 @@ class PersonMutationTest {
         PersonInput input = new PersonInput(1977, "Ilya Anderson");
         Person newPerson = new Person(3L, 1977, "Ilya Anderson");
         when(mapper.toEntity(any(PersonInput.class))).thenReturn(newPerson);
-        when(service.create(any(Person.class))).thenReturn(Mono.just(newPerson));
+        when(service.createOrUpdate(any(Person.class))).thenReturn(Mono.just(newPerson));
         Mono<Person> person = mutation.newPerson(input);
         StepVerifier.create(person)
                 .expectNextMatches(p -> "Ilya Anderson".equals(p.getName()))
@@ -54,7 +54,7 @@ class PersonMutationTest {
         PersonUpdate update = new PersonUpdate(2L, 1977, "Ilya Anderson");
         Person updatePerson = new Person(2L, 1977, "Ilya Anderson");
         when(mapper.toEntity(any(PersonUpdate.class))).thenReturn(updatePerson);
-        when(service.update(any(Person.class))).thenReturn(Mono.just(updatePerson));
+        when(service.createOrUpdate(any(Person.class))).thenReturn(Mono.just(updatePerson));
         Mono<Person> person = mutation.updatePerson(update);
         StepVerifier.create(person)
                 .expectNextMatches(p -> "Ilya Anderson".equals(p.getName()))

@@ -36,6 +36,12 @@ public class Movie {
     @Relationship(type = "REVIEWED", direction = INCOMING)
     private List<Review> reviews = new ArrayList<>();
 
+    public Movie(String tagline, String title, Integer released) {
+        this.tagline = tagline;
+        this.title = title;
+        this.released = released;
+    }
+
     public Movie(Long id, String tagline, String title, Integer released) {
         this.id = id;
         this.tagline = tagline;

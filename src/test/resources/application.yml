@@ -1,0 +1,3 @@
+spring:
+  neo4j:
+    uri: bolt://moviedb:7687
