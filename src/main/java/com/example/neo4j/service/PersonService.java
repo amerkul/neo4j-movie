@@ -6,8 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface PersonService {
 
-    Mono<Person> create(Person person);
-    Mono<Person> update(Person person);
+    Mono<Person> createOrUpdate(Person person);
     Mono<Person> addFollowing(Person person, String followingName);
     Mono<Void> delete(long id);
     Flux<Person> retrieveAll();

@@ -7,7 +7,6 @@ import com.example.neo4j.mutation.update.PersonUpdate;
 import com.example.neo4j.service.PersonService;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
-import com.netflix.graphql.dgs.DgsMutation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -29,13 +28,13 @@ public class PersonMutation {
     public Mono<Person> newPerson(PersonInput input) {
         log.debug("PersonInput {} ", input);
         Person person = mapper.toEntity(input);
-        return this.service.create(person);
+        return this.service.createOrUpdate(person);
     }
 
     @DgsData(parentType = "Mutation", field = "updatePerson")
     public Mono<Person> updatePerson(PersonUpdate update) {
         Person person = mapper.toEntity(update);
-        return this.service.update(person);
+        return this.service.createOrUpdate(person);
     }
 
     @DgsData(parentType = "Mutation", field = "createFollowing")

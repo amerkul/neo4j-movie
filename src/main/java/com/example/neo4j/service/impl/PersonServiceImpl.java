@@ -19,15 +19,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public Mono<Person> create(Person person) {
+    public Mono<Person> createOrUpdate(Person person) {
         return repository.save(person);
-    }
-
-    @Override
-    @Transactional
-    public Mono<Person> update(Person person) {
-        log.debug("Update person, Setting values: {}", person);
-        return repository.updatePerson(person);
     }
 
     @Override
