@@ -1,0 +1,12 @@
+spring:
+  neo4j:
+      authentication:
+          username: ${USERNAME}
+          password: ${PASSWORD}
+      uri: bolt://${HOST}:7687
+logging:
+    level:
+        org.springframework.web: WARN
+        com.example: DEBUG
+server:
+    port: 8080
